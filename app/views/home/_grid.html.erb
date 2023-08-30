@@ -3,23 +3,23 @@
   <div class="container">
 
     <div class= "row">
-        <div class="col-6">
+        <div class="col-sm">
             <p>Original Grid</p>
             <p> Generation <%= @game.initial_generation%>:</p>
             <%=@game.rows%> <%= @game.columns%> 
             <%@original_grid.each do |row| %>
                  <div class="row">
-                    <tt><%=row.join(' ') %></tt>
+                    <tt><%=row.join('') %></tt>
                 </div>
             <%end%> 
         </div>
-        <div class="col-6">
+        <div class="col-sm">
             <p>Next generation</p>
             <p> Generation <%= @game.generation%>:</p>
             <%=@game.rows%> <%= @game.columns%> 
             <% @next_generation.each do |row|%>
                 <div class="row">
-                    <tt><%=row.join(' ')%></tt>
+                    <tt><%=row.join('')%></tt>
                 </div>
             <%end%>
 
@@ -34,5 +34,6 @@
         </div>
         
     </div>
+    <br>
     <%= link_to "Restart", root_path, class:"btn btn-info" %>
   </div>
