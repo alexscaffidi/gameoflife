@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   #post 'update_array', to: 'home#update_array'
   put 'update_array', to: 'home#update_array'
-
+  get '*path' => redirect('/')
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -1,27 +1,38 @@
-  Rows <%=@game.rows %>
-  Columns <%=@game.columns %>
+  Rows: <%=@game.rows %>
+  Columns: <%=@game.columns %>
+  <div class="container">
 
+    <div class= "row">
+        <div class="col-6">
+            <p>Original Grid</p>
+            <p> Generation <%= @game.initial_generation%>:</p>
+            <%=@game.rows%> <%= @game.columns%> 
+            <%@original_grid.each do |row| %>
+                 <div class="row">
+                    <tt><%=row.join(' ') %></tt>
+                </div>
+            <%end%> 
+        </div>
+        <div class="col-6">
+            <p>Next generation</p>
+            <p> Generation <%= @game.generation%>:</p>
+            <%=@game.rows%> <%= @game.columns%> 
+            <% @next_generation.each do |row|%>
+                <div class="row">
+                    <tt><%=row.join(' ')%></tt>
+                </div>
+            <%end%>
 
-  <p>Original Grid</p>
-  <p> Generation <%= @game.initial_generation%>:</p>
-  <%=@game.rows%> <%= @game.columns%> 
-  <%@original_grid.each do |row| %>
-      <p><%=row.join(' ')%></p>
-  <%end%> 
+            <br>
 
-  <p>-------------------------------------------------------</p>
-  <p>Next generation</p>
-  <p> Generation <%= @game.generation%>:</p>
-
-  <%=@game.rows%> <%= @game.columns%> 
-  <% @next_generation.each do |row|%>
-      <p><%=row.join(' ')%></p>
-  <%end%>
-
-  <br>
-
-  <%= form_tag(update_array_path, method: :put)  do %>
-    <%= hidden_field_tag :new_array_data, @next_generation %>
-    <%= hidden_field_tag :counter, @game.generation %>
-    <%= submit_tag "Aggiorna array" %>
-  <% end %>
+            <%= form_tag(update_array_path, method: :put)  do %>
+                <%= hidden_field_tag :new_array_data, @next_generation %>
+                <%= hidden_field_tag :counter, @game.generation %>
+                <%= submit_tag "Next Generation", class:"btn btn-primary"%>
+            <% end %>
+            
+        </div>
+        
+    </div>
+    <%= link_to "Restart", root_path, class:"btn btn-info" %>
+  </div>
