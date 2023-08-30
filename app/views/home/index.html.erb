@@ -1,4 +1,9 @@
   <h1 class="mt-5">Game of life</h1>
+  <% flash.each do |type, msg| %>
+      <div class="alert alert-info">
+        <%= msg %>
+      </div>
+    <% end %>
   <%if @game.file_exist?%>
     <%if @game.correct_format?%>
       <p class="lead">File  input.txt correct</p>

@@ -10,7 +10,9 @@ class HomeController < ApplicationController
     local_grid = @game.load_grid(new_array_data)    
     @next_generation = next_generation(local_grid)
     @game.generation = params[:counter].to_i + 1
-    render :index,  notice: 'Griglia aggiornata con successo!'
+    flash.now[:alert] = 'Updated grid!'
+    render :index
+
   end
   
   def next_generation(grid)
