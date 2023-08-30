@@ -1,0 +1,20 @@
+<h1>Game of life</h1>
+<%if @game.file_exist?%>
+  <%if @game.correct_format?%>
+    <p> File  input.txt corretto</p>
+     <%= render "grid"%>
+  <%else%>
+    <p>Verificare il file input.txt</p>
+    
+    <p><strong>Title: <%if @game.title_format?%> ok <%else%> error <%end%></strong></p>
+    <p><strong>Size grid: <%if @game.size_format?%> ok <%else%> error <%end%></strong></p>
+    <p><strong>Format grid: <%if @game.grid_format?%> ok <%else%> error: value not permitted <%end%></strong></p>
+  <%end%>
+<%else%>
+  <p>File input.txt non trovato</p>
+  <p>Utilizzo file sample.txt</p>
+   <%= render "grid"%>
+<%end%>
+
+<p>--------------------------------------------------</p>
+<%= link_to "Home", root_path %>

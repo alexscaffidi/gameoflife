@@ -1,0 +1,27 @@
+  Rows <%=@game.rows %>
+  Columns <%=@game.columns %>
+
+
+  <p>Original Grid</p>
+  <p> Generation <%= @game.initial_generation%>:</p>
+  <%=@game.rows%> <%= @game.columns%> 
+  <%@original_grid.each do |row| %>
+      <p><%=row.join(' ')%></p>
+  <%end%> 
+
+  <p>-------------------------------------------------------</p>
+  <p>Next generation</p>
+  <p> Generation <%= @game.generation%>:</p>
+
+  <%=@game.rows%> <%= @game.columns%> 
+  <% @next_generation.each do |row|%>
+      <p><%=row.join(' ')%></p>
+  <%end%>
+
+  <br>
+
+  <%= form_tag(update_array_path, method: :put)  do %>
+    <%= hidden_field_tag :new_array_data, @next_generation %>
+    <%= hidden_field_tag :counter, @game.generation %>
+    <%= submit_tag "Aggiorna array" %>
+  <% end %>
